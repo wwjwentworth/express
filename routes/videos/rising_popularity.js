@@ -6,23 +6,22 @@ let path = require('path')
 router.get('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    superagent.get("http://joepbeving.com/video/").end((err, sres) => {
+    superagent.get("https://www.reddit.com/r/videos/rising/").end((err, sres) => {
         if(err) {
             return next(err)
         }
         let $ = cheerio.load(sres.text)
-        let contentLists = []
-        $(".container .post_content_holder").each((idx, element) => {
+        let risingLists = [];
+        $(".expando").each((idx, element) =>{
             let $element = $(element)
-            contentLists.push({
-                src : $element.find(".post_image iframe").attr("src"),
-                title:{
-                    src:$element.find(".post_text h2 a").attr("href"),
-                    text:$element.find(".post_text h2 a").text()
-                }
+            risingLists.push({
+                src:$element.find("iframe").attr("src")
             })
         })
-        res.send(contentLists)
+        res.send(risingLists)
     })
+   
+    
 })
-module.exports = router
+
+module.exports = router;

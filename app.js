@@ -7,8 +7,10 @@ let bodyParser = require('body-parser');
 
 let index = require('./routes/index');
 let users = require('./routes/users');
-let movies_banner = require('./routes/movies_banner')
-let movies_content = require('./routes/movies_content')
+let videos_banner = require('./routes/videos/banner')
+let videos_push_on = require('./routes/videos/push_on')
+let videos_rising = require('./routes/videos/rising_popularity')
+let movies_new_release = require('./routes/movies/new-release')
 //获取应用实例
 let app = express();
 
@@ -33,10 +35,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //试用路由级中间件
-app.use('/', index);
-app.use('/users', users);
-app.use('/movies_banner', movies_banner)
-app.use('/movies_content', movies_content)
+app.use('/videos_banner', videos_banner)
+app.use('/videos_push_on', videos_push_on)
+app.use('/videos_rising', videos_rising)
+app.use('/movies_new_release', movies_new_release)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
