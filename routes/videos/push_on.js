@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
         if(err) {
             return next(err)
         }
-        let $ = cheerio.load(sres.text)
+        let $ = cheerio.load(sres)
         let pushonLists = []
         $(".container .post_content_holder").each((idx, element) => {
             let $element = $(element)
