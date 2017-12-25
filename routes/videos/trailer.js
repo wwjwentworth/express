@@ -6,24 +6,24 @@ let path = require('path')
 router.get('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    superagent.get("http://joepbeving.com/video/").end((err, sres) => {
+    superagent.get("http://www.vmovier.com/channel/trailer/")
+    .end((err, sres) => {
         if(err) {
             return next(err)
         }
         let $ = cheerio.load(sres.text)
-        let pushonLists = []
-        $(".container .post_content_holder").each((idx, element) => {
+        let trailerLists = []
+        let newTrailerLists = []
+        $("#post-list li").each((idx, element) => {
             let $element = $(element)
-            pushonLists.push({
-                src : $element.find(".post_image iframe").attr("src"),
-                title:{
-                    src:$element.find(".post_text h2 a").attr("href"),
-                    text:$element.find(".post_text h2 a").text()
-                },
-                info:$element.find(".post_text p").text()
+            console.log($(element).html())
+            trailerLists.push({
+                src : 'http://www.vmovier.com'+$element.find("a").attr("href"),
+                bg_img:$element.find("a img").attr("src"),
+                info:$element.find(".works-text h4 a").text()
             })
         })
-        res.send(pushonLists)
+        res.send(trailerLists)
     })
 })
 module.exports = router

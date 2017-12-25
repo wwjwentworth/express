@@ -5,15 +5,14 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 
-let index = require('./routes/index');
-let users = require('./routes/users');
 let videos_banner = require('./routes/videos/banner')
 let videos_push_on = require('./routes/videos/push_on')
-let videos_rising = require('./routes/videos/rising_popularity')
-let movies_new_release = require('./routes/movies/new-release')
+let videos_trailer = require('./routes/videos/trailer')
+let videos_cut = require('./routes/videos/cut')
+let videos_d_cut = require('./routes/videos_details/cut')
+
 //获取应用实例
 let app = express();
-
 
 // view engine setup
 //试用模板引擎
@@ -37,8 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //试用路由级中间件
 app.use('/videos_banner', videos_banner)
 app.use('/videos_push_on', videos_push_on)
-app.use('/videos_rising', videos_rising)
-app.use('/movies_new_release', movies_new_release)
+app.use('/videos_trailer', videos_trailer)
+app.use('/videos_cut', videos_cut)
+app.use('/videos_d_cut', videos_d_cut)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -54,7 +54,6 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
