@@ -10,7 +10,9 @@ let videos_push_on = require('./routes/videos/push_on')
 let videos_trailer = require('./routes/videos/trailer')
 let videos_cut = require('./routes/videos/cut')
 let videos_d_cut = require('./routes/videos_details/cut')
-
+let register = require('./routes/register/register')
+let isRepeatName = require('./routes/register/isRepeatName')
+let login = require('./routes/login/login')
 //获取应用实例
 let app = express();
 
@@ -39,6 +41,9 @@ app.use('/videos_push_on', videos_push_on)
 app.use('/videos_trailer', videos_trailer)
 app.use('/videos_cut', videos_cut)
 app.use('/videos_d_cut', videos_d_cut)
+app.use('/register', register)
+app.use('/isRepeatName', isRepeatName)
+app.use('/login', login)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
