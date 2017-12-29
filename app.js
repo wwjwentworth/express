@@ -9,10 +9,11 @@ let videos_banner = require('./routes/videos/banner')
 let videos_push_on = require('./routes/videos/push_on')
 let videos_trailer = require('./routes/videos/trailer')
 let videos_cut = require('./routes/videos/cut')
-let videos_d_cut = require('./routes/videos_details/cut')
+let videos_details = require('./routes/videos/video_details')
 let register = require('./routes/register/register')
 let isRepeatName = require('./routes/register/isRepeatName')
 let login = require('./routes/login/login')
+let folk = require('./routes/music/folk')
 //获取应用实例
 let app = express();
 
@@ -40,10 +41,11 @@ app.use('/videos_banner', videos_banner)
 app.use('/videos_push_on', videos_push_on)
 app.use('/videos_trailer', videos_trailer)
 app.use('/videos_cut', videos_cut)
-app.use('/videos_d_cut', videos_d_cut)
+app.use('/videos_details', videos_details)
 app.use('/register', register)
 app.use('/isRepeatName', isRepeatName)
 app.use('/login', login)
+app.use('/folk', folk)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
