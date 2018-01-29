@@ -14,6 +14,7 @@ router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     let formData = JSON.parse(Object.keys(req.body))
+    console.log(formData)
     db.collection("user").save(formData)
     return res.status(201).send({ message: `Done!` })
 })

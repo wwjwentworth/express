@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     let formData = JSON.parse(Object.keys(req.body))
-    console.log(formData.id)
+    console.log(formData)
     db.collection("videos").find().toArray((err, result) => {
       result.map((item, idx) => {
           if(item._id == formData.id) {

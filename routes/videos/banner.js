@@ -14,8 +14,9 @@ router.get('/', (req, res) => {
         let bannerLists = [];
         $("#headImgDiv #headImgSlidesRegion dd").each((idx, element) =>{
             let $element = $(element)
+            let imgLength = $element.css("background-image").length
             bannerLists.push({
-                url:$element.css("background-image"),
+                img:$element.css("background-image").substring(4, imgLength-1),
                 title:$element.find("a").text()
             })
         })
