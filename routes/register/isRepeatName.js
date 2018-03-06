@@ -13,12 +13,10 @@ MongoClient.connect(dbUrl, (err, database) => {
 router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    let formData = JSON.parse(Object.keys(req.body)[0])
-    console.log(formData.username)
     db.collection("user").find().toArray((err, results) => {
         if(err) return err
         results.map(result =>{
-            if(result.username == formData.username) {
+            if(result.username == req.body.username) {
                 res.send({ isRepeatName: true })
             } else {
                 res.send({ isRepeatName: false })

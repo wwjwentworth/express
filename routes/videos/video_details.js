@@ -14,7 +14,6 @@ router.get('/:id', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     const path = req._parsedOriginalUrl.pathname.split('videos_details/')[1]
-    console.log(path)
     db.collection("videos").find().toArray((err, result) => {
         result.map((item, idx) => {
             if (item._id == path) {
