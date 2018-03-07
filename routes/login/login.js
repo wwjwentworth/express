@@ -13,15 +13,16 @@ MongoClient.connect(dbUrl, (err, database) => {
 router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    let formData = JSON.parse(Object.keys(req.body))
-    db.collection("user").find({"username":formData.username, "password":formData.password}).toArray((err, result) => {
-        if(result.length) {
-            res.send({"isExistUser":true})
+    db.collection("user").find({
+        username:req.body.username,
+        password:req.body.password
+    }).toArray((err, result) => {
+        if(!err) {
+            res.send(result)
         } else {
-            res.send({"isExistUser":false})
+            res.send(err)
         }
     })
-    
     
 })
 module.exports = router
