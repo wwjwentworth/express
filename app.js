@@ -13,7 +13,8 @@ let videos_details = require('./routes/videos/video_details')
 let register = require('./routes/register/register')
 let isRepeatName = require('./routes/register/isRepeatName')
 let login = require('./routes/login/login')
-let folk = require('./routes/music/folk')
+let community = require('./routes/community/community')
+let tree = require('./routes/community/tree')
 //获取应用实例
 let app = express();
 
@@ -45,7 +46,8 @@ app.use('/videos_details', videos_details)
 app.use('/register', register)
 app.use('/isRepeatName', isRepeatName)
 app.use('/login', login)
-app.use('/folk', folk)
+app.use('/community', community)
+app.use('/tree', tree)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
