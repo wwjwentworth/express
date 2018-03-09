@@ -15,6 +15,7 @@ let isRepeatName = require('./routes/register/isRepeatName')
 let login = require('./routes/login/login')
 let community = require('./routes/community/community')
 let tree = require('./routes/community/tree')
+let update = require('./routes/community/update')
 //获取应用实例
 let app = express();
 
@@ -48,6 +49,7 @@ app.use('/isRepeatName', isRepeatName)
 app.use('/login', login)
 app.use('/community', community)
 app.use('/tree', tree)
+app.use('/update', update)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
