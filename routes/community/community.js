@@ -14,5 +14,6 @@ router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     db.collection("community").save(req.body)
+    res.send({"message":"save done"})
 })
 module.exports = router
