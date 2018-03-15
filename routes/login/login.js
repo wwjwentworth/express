@@ -17,10 +17,10 @@ router.post('/', (req, res) => {
         username:req.body.username,
         password:req.body.password
     }).toArray((err, result) => {
-        if(!err) {
-            res.send(result)
+        if(!result.length) {
+            res.send({"errors":"用户名或密码不正确！"})
         } else {
-            res.send(err)
+            res.send(result)
         }
     })
     
