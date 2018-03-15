@@ -13,6 +13,21 @@ MongoClient.connect(dbUrl, (err, database) => {
 router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    let message
     db.collection("user").save(req.body)
+    db.collection("user").find().toArray((err, result) => {
+        result.map((r, idx) => {
+            if(r.email === req.body.email) {
+                message = '该邮箱已被注册，请重新选择！'
+                return;
+            }
+        })
+        console.log(message)
+        if(!message) {
+            res.send(result)
+        } else {
+            res.send({"errors":message})
+        }
+    })
 })
 module.exports = router

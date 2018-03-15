@@ -1,8 +1,8 @@
+
 let express = require('express');
 let router = express.Router();
 let superagent = require('superagent')
 let cheerio = require('cheerio')
-let eventproxy = require('eventproxy')
 let MongoClient = require('mongodb').MongoClient;
 let dbUrl = 'mongodb://wenjiewu2001:iopjkl1002@ds133816.mlab.com:33816/goodtime'
 MongoClient.connect(dbUrl, (err, database) => {
