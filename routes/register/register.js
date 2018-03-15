@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     let message
-    db.collection("user").save(req.body)
+    
     db.collection("user").find().toArray((err, result) => {
         result.map((r, idx) => {
             if(r.email === req.body.email) {
@@ -22,9 +22,9 @@ router.post('/', (req, res) => {
                 return;
             }
         })
-        console.log(message)
         if(!message) {
-            res.send(result)
+            db.collection("user").save(req.body)
+            res.send({"success":"注册成功！"})
         } else {
             res.send({"errors":message})
         }
