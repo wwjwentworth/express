@@ -14,13 +14,13 @@ router.post('/', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     db.collection("user").find({
-        username:req.body.username,
+        email:req.body.email,
         password:req.body.password
     }).toArray((err, result) => {
         if(!result.length) {
-            res.send({"errors":"用户名或密码不正确！"})
+            return res.send({"errors":"邮箱或密码不正确！"})
         } else {
-            res.send(result)
+            return res.status(201).send(result)
         }
     })
     
